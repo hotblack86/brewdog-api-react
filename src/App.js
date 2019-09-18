@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react';
+import Beer from './Beer';
 import './App.css';
 
 const App = () => {
 
   const allBeersURL = "https://api.punkapi.com/v2/beers?per_page=80"
+
+  const [beers, setBeers] = useState([]);
 
   useEffect( () => {
     getBeers();
@@ -13,7 +16,7 @@ const App = () => {
   const getBeers = async () => {
     const response = await fetch(allBeersURL);
     const data = await response.json();
-    console.log(data);
+    setBeers(data);
   }
 
   return (
