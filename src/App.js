@@ -4,9 +4,12 @@ import './App.css';
 
 const App = () => {
 
-  const allBeersURL = "https://api.punkapi.com/v2/beers?per_page=80"
+  const allBeersURL = `https://api.punkapi.com/v2/beers?per_page=80`
 
   const [beers, setBeers] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // ?beer_name=${search}
 
   useEffect( () => {
     getBeers();
@@ -20,12 +23,21 @@ const App = () => {
     setBeers(data);
   }
 
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  }
+
   console.log(beers)
 
   return (
     <div className="App">
       <form className="search-form">
-       <input className="search-bar" type="text" />
+       <input 
+          className="search-bar" 
+          type="text" 
+          value={search} 
+          onChange={updateSearch}
+       />
        <button className="search-button" type="submit">
          Search
        </button>
@@ -33,6 +45,7 @@ const App = () => {
      
      {beers.map(beer => (
        <Beer 
+       key={beer.id}
        title={beer.name}
        abv={beer.abv}
        description={beer.description}
