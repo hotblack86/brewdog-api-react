@@ -16,8 +16,11 @@ const App = () => {
   const getBeers = async () => {
     const response = await fetch(allBeersURL);
     const data = await response.json();
+    
     setBeers(data);
   }
+
+  console.log(beers)
 
   return (
     <div className="App">
@@ -27,6 +30,15 @@ const App = () => {
          Search
        </button>
      </form>
+     
+     {beers.map(beer => (
+       <Beer 
+       title={beer.name}
+       abv={beer.abv}
+       description={beer.description}
+       image={beer.image_url}
+       />
+     ))}
     </div>
   );
 }
