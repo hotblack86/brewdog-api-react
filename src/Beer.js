@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './beer.module.css';
 
-
 const Beer = ({title, abv, description, image}) => {
   return(
     <div className={style.beer}>

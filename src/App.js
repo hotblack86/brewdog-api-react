@@ -3,12 +3,10 @@ import Beer from './Beer';
 import './App.css';
 
 const App = () => {
-
   
   const [beers, setBeers] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState('Punk');
-
+  const [query, setQuery] = useState("");
 
   useEffect( () => {
     getBeers();
@@ -17,11 +15,7 @@ const App = () => {
 
   const getBeers = async () => {
     let url
-    if (query != "") {
-      url = `&beer_name=${query}`
-    } else {
-      url = ""
-    } 
+    (query != "") ? url = `&beer_name=${query}` : url = "";
     const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
     const data = await response.json();
     console.log(data)
@@ -37,8 +31,6 @@ const App = () => {
     setQuery(search);
     setSearch('');
   }
-
-  console.log(beers)
 
   return (
     <div className="App">
@@ -59,9 +51,7 @@ const App = () => {
      </form>
 
      <p className="title">Showing {beers.length} results for "{query}"</p>
-
-
-     
+ 
      {beers.map(beer => (
        <Beer 
        key={beer.id}
