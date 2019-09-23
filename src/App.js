@@ -8,9 +8,6 @@ const App = () => {
   const [beers, setBeers] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('Punk');
-  const [api, setAPI] = useState(`https://api.punkapi.com/v2/beers?beer_name=${query}`)
-
-
 
 
   useEffect( () => {
@@ -18,10 +15,14 @@ const App = () => {
   }, [query]);
 
 
-// ?beer_name=${query}
-
   const getBeers = async () => {
-    const response = await fetch(api);
+    let url
+    if (query != "") {
+      url = `&beer_name=${query}`
+    } else {
+      url = ""
+    } 
+    const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
     const data = await response.json();
     console.log(data)
     setBeers(data);
@@ -37,20 +38,14 @@ const App = () => {
     setSearch('');
   }
 
-  const showAllBeers = () => {
-    setAPI(`https://api.punkapi.com/v2/beers?per_page=80`)
-  }
-
-
   console.log(beers)
 
   return (
     <div className="App">
       <h1 className="title">Brewdog Beer Search App</h1>
-      <h3 className="title">Enter beer name below to see matches</h3>
-      
-      <button type="button" onClick={showAllBeers}>Show All Beers</button>
-      
+      <h3 className="title">Enter search term below to see matches</h3>
+      <p className="title">Search empty field to see all beers</p>
+
       <form onSubmit={getSearch} className="search-form">
        <input 
           className="search-bar" 
@@ -58,10 +53,14 @@ const App = () => {
           value={search} 
           onChange={updateSearch}
        />
-       <button className="search-button" type="submit">
+       <button className="title" type="submit">
          Search
        </button>
      </form>
+
+     <p className="title">Showing {beers.length} results for "{query}"</p>
+
+
      
      {beers.map(beer => (
        <Beer 
