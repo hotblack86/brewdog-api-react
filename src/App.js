@@ -15,7 +15,7 @@ const App = () => {
 
   const getBeers = async () => {
     let url
-    (query != "") ? url = `&beer_name=${query}` : url = "";
+    (query !== "") ? url = `&beer_name=${query}` : url = "";
     const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
     const data = await response.json();
     console.log(data)
@@ -30,6 +30,15 @@ const App = () => {
     e.preventDefault();
     setQuery(search);
     setSearch('');
+  }
+
+  const sortABV = e => {
+    e.preventDefault();
+    const ascABV = beers.slice().sort(function(a, b) {
+      return a.abv - b.abv;
+    });
+    setBeers(ascABV);
+    console.log(ascABV);
   }
 
   return (
@@ -47,6 +56,10 @@ const App = () => {
        />
        <button className="title" type="submit">
          Search
+       </button>
+
+       <button className="sortABV" onClick={sortABV}>
+         Sort by ABV (asc)
        </button>
      </form>
 
