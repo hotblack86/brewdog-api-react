@@ -18,7 +18,7 @@ const App = () => {
     (query !== "") ? url = `&beer_name=${query}` : url = "";
     const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     setBeers(data);
   }
 
@@ -32,14 +32,28 @@ const App = () => {
     setSearch('');
   }
 
+  // const sortName = e => {
+  //   e.preventDefault();
+  //   const sorted = beers.slice().sort((a, b) => {
+  //     return b.name - a.name;
+  //   });
+  //   setBeers(sorted);
+  //   console.log(sorted);
+
+  // <button className="sortName" onClick={sortName}>
+  //        Sort by Name
+  //      </button>
+  // }
+
   const sortABV = e => {
     e.preventDefault();
-    const ascABV = beers.slice().sort(function(a, b) {
+    const ascABV = beers.slice().sort((a, b) => {
       return a.abv - b.abv;
     });
     setBeers(ascABV);
-    console.log(ascABV);
+    // console.log(ascABV);
   }
+
 
   return (
     <div className="App">
@@ -57,6 +71,8 @@ const App = () => {
        <button className="title" type="submit">
          Search
        </button>
+
+       
 
        <button className="sortABV" onClick={sortABV}>
          Sort by ABV (asc)
