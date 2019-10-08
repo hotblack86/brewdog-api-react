@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import Beer from './components/Beer';
 import SearchForm from './components/SearchForm';
+import Header from './components/Header';
 import './App.css';
 
 const App = () => {
@@ -44,10 +45,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="title">Brewdog Beer Search App</h1>
-      <h3 className="title">Enter search term below to see matches</h3>
-      <p className="title">Search empty field to see all beers</p>
-
+      <Header />
       <SearchForm 
         search={search}
         getSearch={getSearch}
