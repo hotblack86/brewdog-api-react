@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Beer from './Beer';
+import Beer from './components/Beer';
 
 
 class AppV2 extends Component {
@@ -32,22 +32,18 @@ class AppV2 extends Component {
       this.getBeers();
     }
 
-    handleChange = e => {
-      const newValue = (e.target.value);
-      this.setState({
-        search: (newValue)
-      })
-      console.log(newValue);
+    handleChange(e) {
+      this.setState({search: e.target.value})
     }
 
-    handleSubmit = e => {
-      e.preventDefault();
+    handleSubmit(e) {
       this.setState({
         query: (this.search)
       })
       this.setState({
         search: ("")
       })
+      e.preventDefault();
     }
 
   
@@ -65,7 +61,7 @@ class AppV2 extends Component {
          <input 
             className="search-bar" 
             type="text"
-            value={search} 
+            value={this.state.search} 
             onChange={this.handleChange}
          />
          <button className="title" type="submit">

@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
-import Beer from './Beer';
+import Beer from './components/Beer';
+import SearchForm from './components/SearchForm';
 import './App.css';
 
 const App = () => {
@@ -32,18 +33,6 @@ const App = () => {
     setSearch('');
   }
 
-  // const sortName = e => {
-  //   e.preventDefault();
-  //   const sorted = beers.slice().sort((a, b) => {
-  //     return b.name - a.name;
-  //   });
-  //   setBeers(sorted);
-  //   console.log(sorted);
-
-  // <button className="sortName" onClick={sortName}>
-  //        Sort by Name
-  //      </button>
-  // }
 
   const sortABV = e => {
     e.preventDefault();
@@ -51,9 +40,7 @@ const App = () => {
       return a.abv - b.abv;
     });
     setBeers(ascABV);
-    // console.log(ascABV);
   }
-
 
   return (
     <div className="App">
@@ -61,23 +48,12 @@ const App = () => {
       <h3 className="title">Enter search term below to see matches</h3>
       <p className="title">Search empty field to see all beers</p>
 
-      <form onSubmit={getSearch} className="search-form">
-       <input 
-          className="search-bar" 
-          type="text" 
-          value={search} 
-          onChange={updateSearch}
-       />
-       <button className="title" type="submit">
-         Search
-       </button>
-
-       
-
-       <button className="sortABV" onClick={sortABV}>
-         Sort by ABV (asc)
-       </button>
-     </form>
+      <SearchForm 
+        search={search}
+        getSearch={getSearch}
+        updateSearch={updateSearch}
+        sortABV={sortABV}
+      />
 
      <p className="title">Showing {beers.length} results for "{query}"</p>
  
