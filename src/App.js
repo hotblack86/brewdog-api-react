@@ -20,7 +20,7 @@ const App = () => {
     (query !== "") ? url = `&beer_name=${query}` : url = "";
     const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
     const data = await response.json();
-    // console.log(data)
+    console.log(data)
     setBeers(data);
   }
 
@@ -34,14 +34,23 @@ const App = () => {
     setSearch('');
   }
 
+  const ascABV = beers.slice().sort((a, b) => a.abv - b.abv);
 
-  const sortABV = e => {
+  const ascName = beers.slice().sort((a, b) => a.name.localeCompare(b.name));
+ 
+  const updateSortABV = e => {
     e.preventDefault();
-    const ascABV = beers.slice().sort((a, b) => {
-      return a.abv - b.abv;
-    });
     setBeers(ascABV);
+    console.log(beers)
   }
+
+  const updateSortName = e => {
+    e.preventDefault();
+    setBeers(ascName);
+    console.log(ascName)
+  }
+
+
 
   return (
     <div className="App">
@@ -50,7 +59,8 @@ const App = () => {
         search={search}
         getSearch={getSearch}
         updateSearch={updateSearch}
-        sortABV={sortABV}
+        sortABV={updateSortABV}
+        sortName={updateSortName}
       />
 
      <p className="title">Showing {beers.length} results for "{query}"</p>

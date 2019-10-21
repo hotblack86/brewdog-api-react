@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchForm = ({search, getSearch, updateSearch,sortABV}) => {
+const SearchForm = ({search, getSearch, updateSearch, sortABV, sortName}) => {
   return(
     <div>
       <form onSubmit={getSearch} className="search-form">
@@ -16,6 +16,10 @@ const SearchForm = ({search, getSearch, updateSearch,sortABV}) => {
 
        <button className="sortABV" onClick={sortABV}>
          Sort by ABV (asc)
+       </button>
+
+       <button className="sortName" onClick={sortName}>
+         Sort by Name
        </button>
      </form>
     </div>
