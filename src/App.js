@@ -1,8 +1,11 @@
 import React,{useEffect, useState} from 'react';
 import Beer from './components/Beer';
 import SearchForm from './components/SearchForm';
+import DropDown from './components/DropDown';
 import Header from './components/Header';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   
@@ -59,11 +62,11 @@ const App = () => {
         search={search}
         getSearch={getSearch}
         updateSearch={updateSearch}
-        sortABV={updateSortABV}
-        sortName={updateSortName}
       />
 
      <p className="title">Showing {beers.length} results for "{query}"</p>
+     
+     <DropDown sortABV={updateSortABV} sortName={updateSortName}/>
  
      {beers.map(beer => (
        <Beer 

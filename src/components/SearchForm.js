@@ -1,4 +1,6 @@
 import React from 'react';
+import style from './searchform.module.css';
+
 
 const SearchForm = ({search, getSearch, updateSearch, sortABV, sortName}) => {
   return(
@@ -10,18 +12,12 @@ const SearchForm = ({search, getSearch, updateSearch, sortABV, sortName}) => {
           value={search} 
           onChange={updateSearch}
        />
-       <button className="title" type="submit">
+       <button className={style.searchbtn} type="submit">
          Search
        </button>
-
-       <button className="sortABV" onClick={sortABV}>
-         Sort by ABV (asc)
-       </button>
-
-       <button className="sortName" onClick={sortName}>
-         Sort by Name
-       </button>
+   
      </form>
+     
     </div>
   )
 }
