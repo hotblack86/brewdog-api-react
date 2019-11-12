@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import Beer from './components/Beer';
 import SearchForm from './components/SearchForm';
-import DropDown from './components/DropDown';
+
 import Header from './components/Header';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -38,12 +38,19 @@ const App = () => {
   }
 
   const ascABV = beers.slice().sort((a, b) => a.abv - b.abv);
-
+  const descABV = beers.slice().sort((a, b) => b.abv - a.abv);
   const ascName = beers.slice().sort((a, b) => a.name.localeCompare(b.name));
- 
+  const descName = beers.slice().sort((a, b) => b.name.localeCompare(a.name));
+
   const updateSortABV = e => {
     e.preventDefault();
     setBeers(ascABV);
+    console.log(beers)
+  }
+
+  const updateSortABVdesc = e => {
+    e.preventDefault();
+    setBeers(descABV);
     console.log(beers)
   }
 
@@ -53,20 +60,29 @@ const App = () => {
     console.log(ascName)
   }
 
+  const updateSortNamedesc = e => {
+    e.preventDefault();
+    setBeers(descName);
+    console.log(ascName)
+  }
 
 
   return (
     <div className="App">
       <Header />
-      <SearchForm 
-        search={search}
-        getSearch={getSearch}
-        updateSearch={updateSearch}
-      />
-
+        <SearchForm 
+          search={search}
+          getSearch={getSearch}
+          updateSearch={updateSearch}
+          updateSortName={updateSortName}
+          updateSortNamedesc={updateSortNamedesc}
+          updateSortABV={updateSortABV}
+          updateSortABVdesc={updateSortABVdesc}
+        />
+      
      <p className="title">Showing {beers.length} results for "{query}"</p>
      
-     <DropDown sortABV={updateSortABV} sortName={updateSortName}/>
+     
  
      {beers.map(beer => (
        <Beer 

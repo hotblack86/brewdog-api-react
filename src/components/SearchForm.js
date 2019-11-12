@@ -1,8 +1,9 @@
 import React from 'react';
+import DropDown from './DropDown';
 import style from './searchform.module.css';
 
 
-const SearchForm = ({search, getSearch, updateSearch, sortABV, sortName}) => {
+const SearchForm = ({search, getSearch, updateSearch, updateSortABV, updateSortABVdesc, updateSortName, updateSortNamedesc}) => {
   return(
     <div>
       <form onSubmit={getSearch} className="search-form">
@@ -15,9 +16,10 @@ const SearchForm = ({search, getSearch, updateSearch, sortABV, sortName}) => {
        <button className={style.searchbtn} type="submit">
          Search
        </button>
+       
    
      </form>
-     
+     <DropDown sortABV={updateSortABV} sortABVdesc={updateSortABVdesc} sortName={updateSortName} sortNamedesc={updateSortNamedesc}/>
     </div>
   )
 }
