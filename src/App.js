@@ -80,6 +80,7 @@ const App = () => {
           updateSortABVdesc={updateSortABVdesc}
         />
       
+      
      <p className="title">Showing {beers.length} results for "{query}"</p>
      
      

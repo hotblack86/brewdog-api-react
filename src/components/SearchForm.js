@@ -1,11 +1,13 @@
 import React from 'react';
 import DropDown from './DropDown';
+import Info from './Info';
 import style from './searchform.module.css';
 
 
 const SearchForm = ({search, getSearch, updateSearch, updateSortABV, updateSortABVdesc, updateSortName, updateSortNamedesc}) => {
   return(
     <div>
+      <Info />
       <form onSubmit={getSearch} className="search-form">
        <input 
           className="search-bar" 
