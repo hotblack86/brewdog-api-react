@@ -17,9 +17,7 @@ const SearchForm = ({search, getSearch, updateSearch, updateSortABV, updateSortA
        />
        <button className={style.searchbtn} type="submit">
          Search
-       </button>
-       
-   
+       </button> 
      </form>
      <DropDown sortABV={updateSortABV} sortABVdesc={updateSortABVdesc} sortName={updateSortName} sortNamedesc={updateSortNamedesc}/>
     </div>

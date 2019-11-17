@@ -23,8 +23,6 @@ const DropDown = ({sortABV, sortABVdesc, sortName, sortNamedesc}) => {
          Name: Z - A
        </button>
 
-
-
       </div>
     </div>
   )

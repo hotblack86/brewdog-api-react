@@ -19,10 +19,10 @@ class AppV2 extends Component {
       const { query } = this.state;
       let url
       (query !== "") ? url = `&beer_name=${query}` : url = "";
-      console.log(url);
+
       const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
       const data = await response.json();
-      console.log(data)
+
       this.setState({
         beers: data
       })
@@ -61,7 +61,7 @@ class AppV2 extends Component {
          <input 
             className="search-bar" 
             type="text"
-            value={this.state.search} 
+            value={search} 
             onChange={this.handleChange}
          />
          <button className="title" type="submit">
