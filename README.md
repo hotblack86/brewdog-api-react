@@ -1,6 +1,6 @@
 A React App that searches the Brewdog API and returns beers based on the search term.
 
-![](AppDemo.gif)
+![](Demo.mp4)
 
 **Instructions**
 - clone this repository
