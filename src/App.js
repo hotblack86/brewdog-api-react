@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react';
 import Beer from './components/Beer';
 import SearchForm from './components/SearchForm';
 import Header from './components/Header';
+import RandomBeer from './components/RandomBeer';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,6 +22,12 @@ const App = () => {
     let url
     (query !== "") ? url = `&beer_name=${query}` : url = "";
     const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=80${url}`);
+    const data = await response.json();
+    setBeers(data);
+  }
+
+  const randomBeer = async () => {
+    const response = await fetch(`https://api.punkapi.com/v2/beers/random`);
     const data = await response.json();
     setBeers(data);
   }
@@ -73,6 +80,7 @@ const App = () => {
           updateSortABV={updateSortABV}
           updateSortABVdesc={updateSortABVdesc}
         />
+        <RandomBeer randomBeer={randomBeer}/>
             
      <p className="title">Showing {beers.length} results for "{query}"</p>
      
